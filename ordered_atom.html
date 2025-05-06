@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Details</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .order-details {
+      border: 2px solid #00ffd5;
+      padding: 30px;
+      border-radius: 20px;
+      display: inline-block;
+      background-color: #111;
+    }
+
+    .order-details h2 {
+      color: #00ffd5;
+    }
+
+    .order-details p {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .home-button {
+      background-color: #00ffd5;
+      color: black;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .home-button:hover {
+      background-color: #00dab3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="order-details">
+    <h2>Order Confirmation</h2>
+    <p id="item-name">Loading...</p>
+    <p id="item-price"></p>
+    <p id="extra-item"></p>
+  </div>
+
+  <button class="home-button" onclick="goHome()">Go to Home</button>
+
+  <script>
+    // Get data from localStorage
+    const name = localStorage.getItem("orderName");
+    const price = localStorage.getItem("orderPrice");
+    const extraItem = localStorage.getItem("extraItem");
+
+    // Check if values exist before displaying
+    if (name && price) {
+      document.getElementById("item-name").textContent = "Item: " + name;
+      document.getElementById("item-price").textContent = "Price: ₹" + price;
+      document.getElementById("extra-item").textContent = extraItem !== "None" ? "Extra: " + extraItem : "";
+    } else {
+      document.getElementById("item-name").textContent = "No item ordered.";
+      document.getElementById("item-price").textContent = "";
+      document.getElementById("extra-item").textContent = "";
+    }
+
+    function goHome() {
+      window.location.href = "sai.html"; // Change 'index.html' to your home page's filename
+    }
+  </script>
+  
+</body>
+</html>
+
+</html>

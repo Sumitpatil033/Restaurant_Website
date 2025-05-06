@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu For Restaurant</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #00ffc8;
+      margin-bottom: 40px;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #1e1e1e;
+      border: 1px solid #444;
+      border-radius: 15px;
+      width: 220px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      color: #ffcc00;
+      margin: 10px 0 5px;
+    }
+
+    .card-info {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .card button {
+      background-color: #00ffc8;
+      border: none;
+      color: black;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .card button:hover {
+      background-color: #00dab3;
+    }
+
+    .extra-item {
+      margin-top: 15px;
+      color: #00ffd5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Menu For Cafe</h1>
+
+  <div class="cards-container">
+    <div class="card">
+      <img src="burger.jpeg.jpg" class="card-img" alt="Burger">
+      <p class="card-title">BURGER</p>
+      <p class="card-info">Price = 80</p>
+      <label for="burger-extra" class="extra-item">Add Extra: </label>
+      <select id="burger-extra">
+        <option value="None">None</option>
+        <option value="Cheese">Cheese (+₹20)</option>
+        <option value="Bacon">Bacon (+₹30)</option>
+      </select>
+      <button onclick="orderItem('BURGER', 80, 'burger-extra')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="pizza.jpeg.jpg" class="card-img" alt="Pizza">
+      <p class="card-title">PIZZA</p>
+      <p class="card-info">Price = 200</p>
+      <label for="pizza-extra" class="extra-item">Add Extra: </label>
+      <select id="pizza-extra">
+        <option value="None">None</option>
+        <option value="Cheese">Cheese (+₹30)</option>
+        <option value="Olives">Olives (+₹25)</option>
+      </select>
+      <button onclick="orderItem('PIZZA', 200, 'pizza-extra')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="noodles.jpeg.jpg" class="card-img" alt="Noodles">
+      <p class="card-title">NOODLES</p>
+      <p class="card-info">Price = 140</p>
+      <label for="noodles-extra" class="extra-item">Add Extra: </label>
+      <select id="noodles-extra">
+        <option value="None">None</option>
+        <option value="Egg">Egg (+₹20)</option>
+        <option value="Chili">Chili (+₹15)</option>
+      </select>
+      <button onclick="orderItem('NOODLES', 140, 'noodles-extra')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="pasta (1).jpg" class="card-img" alt="Pasta">
+      <p class="card-title">PASTA</p>
+      <p class="card-info">Price = 90</p>
+      <label for="pasta-extra" class="extra-item">Add Extra: </label>
+      <select id="pasta-extra">
+        <option value="None">None</option>
+        <option value="Garlic">Garlic (+₹10)</option>
+        <option value="Cheese">Cheese (+₹20)</option>
+      </select>
+      <button onclick="orderItem('PASTA', 90, 'pasta-extra')">Order Now</button>
+    </div>
+
+    <div class="card">
+      <img src="sandwitch.jpeg.jpg" class="card-img" alt="Sandwich">
+      <p class="card-title">SANDWICH</p>
+      <p class="card-info">Price = 70</p>
+      <label for="sandwich-extra" class="extra-item">Add Extra: </label>
+      <select id="sandwich-extra">
+        <option value="None">None</option>
+        <option value="Cheese">Cheese (+₹10)</option>
+        <option value="Avocado">Avocado (+₹25)</option>
+      </select>
+      <button onclick="orderItem('SANDWICH', 70, 'sandwich-extra')">Order Now</button>
+    </div>
+  </div>
+
+  <script>
+    function orderItem(name, price, extraItemId) {
+      // Get the extra item selection
+      const extraItem = document.getElementById(extraItemId).value;
+      let extraPrice = 0;
+
+      // Calculate price for extra item
+      if (extraItem === "Cheese") {
+        extraPrice = 20;
+      } else if (extraItem === "Bacon") {
+        extraPrice = 30;
+      } else if (extraItem === "Olives") {
+        extraPrice = 25;
+      } else if (extraItem === "Egg") {
+        extraPrice = 20;
+      } else if (extraItem === "Chili") {
+        extraPrice = 15;
+      } else if (extraItem === "Garlic") {
+        extraPrice = 10;
+      } else if (extraItem === "Avocado") {
+        extraPrice = 25;
+      }
+
+      // Save data to localStorage
+      localStorage.setItem("orderName", name);
+      localStorage.setItem("orderPrice", price + extraPrice);
+      localStorage.setItem("extraItem", extraItem);
+      window.location.href = "ordered_atom.html";
+    }
+  </script>
+
+</body>
+</html>
